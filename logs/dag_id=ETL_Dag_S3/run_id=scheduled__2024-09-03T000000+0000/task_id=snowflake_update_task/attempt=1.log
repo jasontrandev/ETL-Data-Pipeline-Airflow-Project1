@@ -1,0 +1,51 @@
+[2024-09-04T14:06:43.348+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_Dag_S3.snowflake_update_task scheduled__2024-09-03T00:00:00+00:00 [queued]>
+[2024-09-04T14:06:43.367+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_Dag_S3.snowflake_update_task scheduled__2024-09-03T00:00:00+00:00 [queued]>
+[2024-09-04T14:06:43.368+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 6
+[2024-09-04T14:06:43.395+0000] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): snowflake_update_task> on 2024-09-03 00:00:00+00:00
+[2024-09-04T14:06:43.406+0000] {standard_task_runner.py:60} INFO - Started process 638 to run task
+[2024-09-04T14:06:43.411+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL_Dag_S3', 'snowflake_update_task', 'scheduled__2024-09-03T00:00:00+00:00', '--job-id', '338', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag_s3.py', '--cfg-path', '/tmp/tmpdlbv1m1o']
+[2024-09-04T14:06:43.415+0000] {standard_task_runner.py:88} INFO - Job 338: Subtask snowflake_update_task
+[2024-09-04T14:06:43.522+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL_Dag_S3.snowflake_update_task scheduled__2024-09-03T00:00:00+00:00 [running]> on host f79655b91e76
+[2024-09-04T14:06:43.712+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='jasontran' AIRFLOW_CTX_DAG_ID='ETL_Dag_S3' AIRFLOW_CTX_TASK_ID='snowflake_update_task' AIRFLOW_CTX_EXECUTION_DATE='2024-09-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-09-03T00:00:00+00:00'
+[2024-09-04T14:06:43.715+0000] {sql.py:276} INFO - Executing: 
+    update ***_db.tcops_dimensions.employee_dim
+    set effective_end_date = '2024-09-04', is_active = 'N'
+    where employee_id in (950018) and is_active = 'Y'
+    
+[2024-09-04T14:06:43.732+0000] {base.py:83} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2024-09-04T14:06:43.744+0000] {base.py:83} INFO - Using connection ID 'snowflake_conn' for task execution.
+[2024-09-04T14:06:43.748+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.146.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-09-04T14:06:43.750+0000] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-09-04T14:06:44.515+0000] {cursor.py:1028} INFO - query: [ALTER SESSION SET autocommit=False]
+[2024-09-04T14:06:44.810+0000] {cursor.py:1041} INFO - query execution done
+[2024-09-04T14:06:44.815+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2024-09-04T14:06:44.817+0000] {sql.py:450} INFO - Running statement: update ***_db.tcops_dimensions.employee_dim
+    set effective_end_date = '2024-09-04', is_active = 'N'
+    where employee_id in (950018) and is_active = 'Y', parameters: None
+[2024-09-04T14:06:44.818+0000] {cursor.py:1028} INFO - query: [update ***_db.tcops_dimensions.employee_dim set effective_end_date = '2024-0...]
+[2024-09-04T14:06:45.565+0000] {cursor.py:1041} INFO - query execution done
+[2024-09-04T14:06:45.573+0000] {connection.py:718} INFO - closed
+[2024-09-04T14:06:46.191+0000] {connection.py:724} INFO - No async queries seem to be running, deleting session
+[2024-09-04T14:06:46.273+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 388, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 455, in _run_command
+    cur.execute(sql_statement)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/cursor.py", line 1132, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 345, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.ProgrammingError: 100038 (22018): 01b6ce8e-3201-3474-0009-fca60002c3ba: Numeric value 'I1' is not recognized
+[2024-09-04T14:06:46.287+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ETL_Dag_S3, task_id=snowflake_update_task, execution_date=20240903T000000, start_date=20240904T140643, end_date=20240904T140646
+[2024-09-04T14:06:46.321+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 338 for task snowflake_update_task (100038 (22018): 01b6ce8e-3201-3474-0009-fca60002c3ba: Numeric value 'I1' is not recognized; 638)
+[2024-09-04T14:06:46.362+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-09-04T14:06:46.404+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

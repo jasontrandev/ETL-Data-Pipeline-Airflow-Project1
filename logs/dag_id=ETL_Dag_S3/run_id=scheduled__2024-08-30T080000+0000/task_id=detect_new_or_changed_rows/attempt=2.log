@@ -1,0 +1,43 @@
+[2024-08-30T15:04:13.492+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ETL_Dag_S3.detect_new_or_changed_rows scheduled__2024-08-30T08:00:00+00:00 [queued]>
+[2024-08-30T15:04:13.514+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ETL_Dag_S3.detect_new_or_changed_rows scheduled__2024-08-30T08:00:00+00:00 [queued]>
+[2024-08-30T15:04:13.515+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 7
+[2024-08-30T15:04:13.549+0000] {taskinstance.py:2191} INFO - Executing <Task(_PythonDecoratedOperator): detect_new_or_changed_rows> on 2024-08-30 08:00:00+00:00
+[2024-08-30T15:04:13.564+0000] {standard_task_runner.py:60} INFO - Started process 301 to run task
+[2024-08-30T15:04:13.570+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ETL_Dag_S3', 'detect_new_or_changed_rows', 'scheduled__2024-08-30T08:00:00+00:00', '--job-id', '68', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag_s3.py', '--cfg-path', '/tmp/tmp1k9r86pf']
+[2024-08-30T15:04:13.576+0000] {standard_task_runner.py:88} INFO - Job 68: Subtask detect_new_or_changed_rows
+[2024-08-30T15:04:13.737+0000] {task_command.py:423} INFO - Running <TaskInstance: ETL_Dag_S3.detect_new_or_changed_rows scheduled__2024-08-30T08:00:00+00:00 [running]> on host 9659d44b0ccc
+[2024-08-30T15:04:13.984+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='jasontran' AIRFLOW_CTX_DAG_ID='ETL_Dag_S3' AIRFLOW_CTX_TASK_ID='detect_new_or_changed_rows' AIRFLOW_CTX_EXECUTION_DATE='2024-08-30T08:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-08-30T08:00:00+00:00'
+[2024-08-30T15:04:14.100+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2024-08-30T15:04:15.420+0000] {logging_mixin.py:188} INFO - Succesfully read data from AWS S3
+[2024-08-30T15:04:15.426+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.146.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-08-30T15:04:15.443+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/decorators/base.py", line 241, in execute
+    return_value = super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/includes/emp_dim_insert_update.py", line 27, in detect_new_or_changed_rows
+    conn = sc.connect(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/__init__.py", line 54, in Connect
+    return SnowflakeConnection(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 413, in __init__
+    self.connect(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 667, in connect
+    self.__config(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1120, in __config
+    Error.errorhandler_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 348, in hand_to_other_handler
+    connection.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.ProgrammingError: 251005: 251005: User is empty
+[2024-08-30T15:04:15.456+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=ETL_Dag_S3, task_id=detect_new_or_changed_rows, execution_date=20240830T080000, start_date=20240830T150413, end_date=20240830T150415
+[2024-08-30T15:04:15.485+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 68 for task detect_new_or_changed_rows (251005: 251005: User is empty; 301)
+[2024-08-30T15:04:15.522+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-08-30T15:04:15.588+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

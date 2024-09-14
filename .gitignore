@@ -1,0 +1,13 @@
+# Virtual environment
+env/
+venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Airflow log files when airflow is run locally
+*.config
+*.logs
+*.plugins
+.airflow_db_initialised

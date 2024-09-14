@@ -1,0 +1,6 @@
+numpy
+pandas
+python-dotenv
+snowflake-connector-python
+boto3
+s3fs
