@@ -1,4 +1,4 @@
-# # Environments
+# Environments
 .env
 env/
 venv/
@@ -9,5 +9,5 @@ includes/__pycache__
 
 # Airflow log files when airflow is run locally
 config/
-logs/
+[Ll]ogs/
 plugins/
