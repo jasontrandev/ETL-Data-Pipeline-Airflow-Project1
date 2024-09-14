@@ -18,7 +18,6 @@ The Airflow DAG runs daily to check and extract all new data from the PostgreSQL
 
     ├── dags              # Contains the Airflow Dag
     ├── logs              # Contains log for each tasks
-    ├── plugins           #
     ├── includes	      # Contains the SQL and Python scripts that uses in the AirFlow Dag.
         ├── emp_dim_insert_update.py
         ├── queries.py

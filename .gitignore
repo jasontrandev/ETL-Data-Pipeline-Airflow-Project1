@@ -4,8 +4,7 @@ env/
 venv/
 
 # Byte-compiled / optimized / DLL files
-dags/__pycache__
-includes/__pycache__
+**/__pycache__
 
 # Airflow log files when airflow is run locally
 config/
