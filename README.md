@@ -30,6 +30,7 @@ The Airflow DAG runs daily to check and extract all new data from the PostgreSQL
 1. Deploy Airflow on Docker Compose to install all dependencies and start running Airflow through terminal command.
 
 2. Implement an Airflow DAG that runs daily and uses the TaskFlow approach to pass the outputs from each task to another.
+
 3. Create one task that uses the SqlToS3Operator operation to extract HR data from PostgreSQL schema to AWS S3 buckets in CSV file format.
 
 4. Process data using Python scripts to retrieve the IDs of the new records to insert them in the Data warehouse, and the IDs of the records that contain a few information changes to update it and insert new records with new values for applying the SCD type 2 concept.
@@ -37,6 +38,17 @@ The Airflow DAG runs daily to check and extract all new data from the PostgreSQL
 5. Load the data into the Snowflake Data warehouse table.
 
 6. The Airflow DAG contains some Python scripts using BranchPythonOperator operation to check if there are new records to insert or records to update before running the task to avoid errors.
+
+## Tools and Technologies
+
+- Apache Airflow
+- Python
+- Pandas
+- PostgreSQL
+- AWS S3
+- Snowflake
+- Docker
+- ETL
 
 ## Project Output
 
